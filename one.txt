@@ -1,0 +1,12 @@
+1. Configure authentication on your OpenShift instance so that:
+a) The password file is /etc/origin/openshift-password
+b) The user randy exists with password redhat
+c) The user sam exists with password redhat
+d) Both users must be able to authenticate to the Openshift instance via Cli and on the Web
+Console at https://master.lab.exampIe.com:8443
+e) No user should be able to create any project
+[Ref Cluster Administration - 4.2.2]
+ htpasswd -b /etc/origin/openshift-passwd sam redhat
+ htpasswd -b /etc/origin/openshift-passwd randy redhat
+oc adm policy remove-cluster-role-from-group self-provosioner systemzauthenticated
+systemzauthenticatedzoauth
